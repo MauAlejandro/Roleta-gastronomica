@@ -9,7 +9,19 @@ let oQueCozinhar = [
     brasileira = ["churrasco", "feijoada"]
 ]
 
-let pessoas = ["Mauricio", "Raphaella"]
+let pessoas = [
+    {
+    nome: "Mauricio",
+    idade: 25,
+    sexo: "masculino"
+    },
+
+    {
+    nome: "Raphaella",
+    idade: 33,
+    sexo: "feminino"
+    }
+]
 
 
 dado = (min, max)=>{
@@ -59,10 +71,41 @@ function dadoDeComida(como, tipo, quem, resultadoDoDado){
     
     prato = minhaMaeMandou(resultadoDoDado, tipo)
 
-    quem = minhaMaeMandou(resultadoDoDado, quem)
+    //quem = minhaMaeMandou(resultadoDoDado, quem)
+
+   quem = () =>{
+    
+    
+    if(resultadoDoDado > quem.length){
+    
+        indice = resultadoDoDado
+    
+        while(indice > quem.length){
+        
+            indice -= quem.length
+        }
+    
+        quem = quem[indice].nome
+    
+        return quem
+    }else{
+        
+        if(resultadoDoDado == quem.length){
+            quem = quem[resultadoDoDado - 1].nome
+    
+            return quem
+        }else{
+        
+        quem = quem[resultadoDoDado].nome
+        return quem
+        }
+    }
+   }
+
+   quem()
 
     if(como == "Cozinhar em casa"){
-        console.log(`hje vamos ${como} um(a)s delicioso(a)s ${prato} por conta do(a) chef ${quem}`)
+        console.log(`hoje vamos ${como} um(a)s delicioso(a)s ${prato} por conta do(a) chef ${quem}`)
     }
 
     if(como == "Delivery"){
@@ -72,16 +115,12 @@ function dadoDeComida(como, tipo, quem, resultadoDoDado){
     if(como == "Comer no restaurante"){
         console.log(`hoje vamos ir comer um(a)s delicioso(a)s ${prato} por conta do(a) ${quem}`)
     }
-}
-    
 
-    //if(como == "Cozinhar em casa"){
-    //    console.log(`Hoje vamos a ${como} um(a) ${tipo}, faremos ${tipo}`)
-    //}
+}
+
 
 
 
 
    
 dadoDeComida(oQuefazer, oQueCozinhar, pessoas, dado(0, 7))
-
